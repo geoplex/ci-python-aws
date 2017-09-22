@@ -1,7 +1,9 @@
 FROM python:2.7.11
 
-RUN echo "deb http://ftp.au.debian.org/debian/ jessie main contrib non-free" >> /etc/apt/sources.list
-RUN echo "deb-src http://ftp.au.debian.org/debian/ jessie main contrib non-free" >> /etc/apt/sources.list
+ENV DEBIAN_FRONTEND noninteractive
+RUN echo "deb-src http://httpredir.debian.org/debian jessie main" >> /etc/apt/sources.list
+RUN echo "deb-src http://httpredir.debian.org/debian/ jessie-updates main" >> /etc/apt/sources.list
+RUN echo "deb-src http://security.debian.org/ jessie/updates main" >> /etc/apt/sources.list
 
 RUN apt-get update --fix-missing && apt-get install -y \
 	gdal-bin \
